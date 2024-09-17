@@ -14,8 +14,5 @@ export async function getSuggestedProfilesAction(formData: FormData) {
     ownerWalletAddress,
   })
 
-  console.log(data)
-
-  // mutate data
-  // revalidate cache
+  return data
 }
