@@ -1,3 +1,4 @@
+import { ICreateCommentInput, ICreateCommentResponse } from '@/models/comment.models'
 import { IProfileResponse } from '@/models/profile.models'
 import { FetchMethod, fetchTapestry } from '@/utils/api'
 
@@ -66,4 +67,26 @@ export const getFollowing = async ({ username }: { username: string }) => {
   })
 
   return response
+}
+
+export const createComment = async ({
+  profileId,
+  contentId,
+  text,
+  commentId
+}: ICreateCommentInput) => {
+  const createCommentResponse = await fetchTapestry<ICreateCommentResponse, ICreateCommentInput>({
+    endpoint: 'comments',
+    method: FetchMethod.POST,
+    data: {
+      contentId,
+      profileId,
+      text,
+      commentId
+    },
+  })
+
+  console.log(createCommentResponse)
+
+  return createCommentResponse
 }
